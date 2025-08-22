@@ -5,6 +5,7 @@ import catering.businesslogic.kitchen.KitchenTaskManager;
 import catering.businesslogic.menu.MenuManager;
 import catering.businesslogic.recipe.RecipeManager;
 import catering.businesslogic.shift.ShiftManager;
+import catering.businesslogic.staff.StaffManager;
 import catering.businesslogic.user.UserManager;
 import catering.persistence.KitchenTaskPersistence;
 import catering.persistence.MenuPersistence;
@@ -25,6 +26,10 @@ public class CatERing {
     private EventManager eventMgr;
     private KitchenTaskManager kitchenTaskMgr;
     private ShiftManager shiftMgr;
+
+    //GESTIONE DEL PERSONALE
+    private StaffManager staffManager;
+
 
     private MenuPersistence menuPersistence;
     private KitchenTaskPersistence kitchenTaskPersistence;
@@ -108,4 +113,10 @@ public class CatERing {
         this.kitchenTaskMgr = kitchenTaskMgr;
     }
 
+
+    //GESTIONE DEL PERSONALE
+    public StaffManager getStaffManager() {
+        if (staffManager == null) staffManager = new StaffManager();
+        return staffManager;
+    }
 }

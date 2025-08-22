@@ -186,6 +186,57 @@ CREATE TABLE
         FOREIGN KEY (`shift_id`) REFERENCES `Shifts` (`id`)
     );
 
+-- GESTIONE DEL PERSONALE--
+-- === STAFF MODULE (MINIMO) ===
+CREATE TABLE IF NOT EXISTS staff (
+                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                     name TEXT NOT NULL,
+                                     surname TEXT NOT NULL,
+                                     fiscal_code TEXT UNIQUE NOT NULL,
+                                     address TEXT,
+                                     phone TEXT,
+                                     email TEXT,
+                                     role TEXT,
+                                     status TEXT DEFAULT 'FREE',              -- FREE | WORKING | ON_HOLIDAY
+                                     remaining_holiday INTEGER DEFAULT 20,
+                                     permanent INTEGER DEFAULT 0,
+                                     contract_start_date TEXT,
+                                     contract_end_date TEXT
+);
+
+CREATE TABLE IF NOT EXISTS holidays (
+                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                        staff_id INTEGER NOT NULL,
+                                        start_date TEXT NOT NULL,
+                                        end_date TEXT NOT NULL,
+                                        accepted INTEGER DEFAULT 0,
+                                        FOREIGN KEY(staff_id) REFERENCES staff(id)
+);
+
+CREATE TABLE IF NOT EXISTS feedback (
+                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                        staff_id INTEGER NOT NULL,
+                                        description TEXT NOT NULL,
+                                        FOREIGN KEY(staff_id) REFERENCES staff(id)
+);
+
+CREATE TABLE IF NOT EXISTS team (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    team_size INTEGER DEFAULT 0,
+                                    type TEXT
+);
+
+CREATE TABLE IF NOT EXISTS staff_team (
+                                          staff_id INTEGER NOT NULL,
+                                          team_id INTEGER NOT NULL,
+                                          PRIMARY KEY (staff_id, team_id),
+                                          FOREIGN KEY(staff_id) REFERENCES staff(id),
+                                          FOREIGN KEY(team_id) REFERENCES team(id)
+);
+
+--GESTIONE DEL PERSONALE--
+
+
 -- Clean up existing data
 DELETE FROM RecipePreparations
 WHERE
