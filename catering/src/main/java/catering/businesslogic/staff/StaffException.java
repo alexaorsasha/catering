@@ -1,7 +1,7 @@
 package catering.businesslogic.staff;
 
-public class StaffException extends RuntimeException {
-    public StaffException(String message) {
-        super(message);
-    }
+import catering.businesslogic.UseCaseLogicException;
+
+public class StaffException extends UseCaseLogicException {
+    public StaffException(String msg) { super(msg); }
 }
