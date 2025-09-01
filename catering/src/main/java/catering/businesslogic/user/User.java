@@ -12,7 +12,7 @@ import java.util.Set;
 public class User {
 
     public static enum Role {
-        CUOCO, CHEF, ORGANIZZATORE, SERVIZIO
+        CUOCO, CHEF, ORGANIZZATORE, SERVIZIO, OWNER
     };
 
     private int id;
@@ -35,6 +35,14 @@ public class User {
 
     public boolean isChef() {
         return roles.contains(Role.CHEF);
+    }
+
+    public boolean isOwner() {
+        return roles.contains(Role.OWNER);
+    }
+
+    public boolean isOrganizer(){
+        return roles.contains(Role.ORGANIZZATORE);
     }
 
     public String getUserName() {

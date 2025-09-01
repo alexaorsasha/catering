@@ -87,16 +87,12 @@ public class StaffManager {
 
     /* ===== FERIE ===== */
 
-    public Holidays requestHolidays(Staff staff, LocalDateTime start, LocalDateTime end, Integer daysOpt)
+    public Holidays requestHolidays(Staff staff, LocalDateTime start, LocalDateTime end)
             throws StaffException {
         if (staff == null || start == null || end == null || !start.isBefore(end))
             throw new StaffException("Date ferie non valide");
         if (persistence.existsHolidayOverlap(staff, start.toString(), end.toString()))
             throw new StaffException("Periodo di ferie sovrapposto");
-
-        int days = (daysOpt != null && daysOpt > 0)
-                ? daysOpt
-                : (int) ChronoUnit.DAYS.between(start.toLocalDate(), end.toLocalDate()) + 1;
 
         Holidays h = new Holidays(staff, start, end); // accepted=false
         notifyHoliday(staff, h); // -> INSERT in holidays

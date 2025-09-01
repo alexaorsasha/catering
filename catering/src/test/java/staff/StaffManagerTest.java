@@ -72,8 +72,7 @@ public class StaffManagerTest {
 
         Holidays h = sm.requestHolidays(s,
                 LocalDateTime.of(2025,7,1,0,0),
-                LocalDateTime.of(2025,7,3,23,59),
-                3);
+                LocalDateTime.of(2025,7,3,23,59));
 
         assertNotNull(h);
         assertTrue(h.getId() > 0);
@@ -93,8 +92,7 @@ public class StaffManagerTest {
 
         Holidays h = sm.requestHolidays(s,
                 LocalDateTime.of(2025,8,10,0,0),
-                LocalDateTime.of(2025,8,12,23,59),
-                3);
+                LocalDateTime.of(2025,8,12,23,59));
 
         sm.denyHolidays(h);
         assertFalse(h.getAccepted());
@@ -109,15 +107,13 @@ public class StaffManagerTest {
 
         Holidays h1 = sm.requestHolidays(s,
                 LocalDateTime.of(2025,9,1,0,0),
-                LocalDateTime.of(2025,9,3,23,59),
-                3);
+                LocalDateTime.of(2025,9,3,23,59));
         assertTrue(h1.getId() > 0);
 
         assertThrows(StaffException.class, () ->
                 sm.requestHolidays(s,
                         LocalDateTime.of(2025,9,2,0,0),   // overlap
-                        LocalDateTime.of(2025,9,4,23,59),
-                        3)
+                        LocalDateTime.of(2025,9,4,23,59))
         );
     }
 
@@ -172,8 +168,7 @@ public class StaffManagerTest {
 
         Holidays h = sm.requestHolidays(s,
                 LocalDateTime.of(2025,10,1,0,0),
-                LocalDateTime.of(2025,10,3,23,59),
-                3);
+                LocalDateTime.of(2025,10,3,23,59));
 
         assertThrows(StaffException.class, () -> sm.approveHolidays(h));
     }

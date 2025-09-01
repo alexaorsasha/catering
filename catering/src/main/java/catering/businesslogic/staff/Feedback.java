@@ -10,7 +10,8 @@ public class Feedback {
         this.description = description;
     }
 
-    public int getId() { return id; }       public void setId(int id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public Staff getStaff() { return staff; }
     public String getDescription() { return description; }
 }
