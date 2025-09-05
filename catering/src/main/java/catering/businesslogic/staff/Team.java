@@ -23,8 +23,14 @@ public class Team {
         teamSize = components.size();
     }
 
-    public int getId() { return id; }            public void setId(int id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public int getTeamSize() { return teamSize; }
-    public String getType() { return type; }     public void setType(String type) { this.type = type; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
     public ArrayList<Staff> getComponents() { return components; }
+
+    public boolean isStaffInTeam(Staff staff) {
+        return components.contains(staff);
+    }
 }

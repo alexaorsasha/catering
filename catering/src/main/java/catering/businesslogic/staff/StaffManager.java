@@ -137,4 +137,15 @@ public class StaffManager {
         notifyTeam(staff, team);
         notifyUpdate(staff);
     }
+
+    /* ===== FEEDBACK ===== */
+
+    public void addFeedback(Staff s, String feedback) throws StaffException {
+        if (s == null || feedback == null) throw new StaffException("Staff/Feedback nullo");
+        Feedback f = new Feedback(s, feedback);
+        persistence.updateFeedback(s, f);
+        notifyFeedback(s, f);
+
+
+    }
 }
